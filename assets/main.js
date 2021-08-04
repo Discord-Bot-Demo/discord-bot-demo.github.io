@@ -99,9 +99,9 @@ function load() {
     inputBox.addEventListener('keydown', e => {
         if (e.key === '@') mentionBox.visible(true);
 
-        if (e.key === 'Backspace' && /^.@$/.test(inputBox.value)) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /.@$/.test(inputBox.value)) return mentionBox.visible(true);
         if (e.key === 'Backspace' && /@$/.test(inputBox.value)) return mentionBox.visible(false);
-        if (e.key === 'Backspace' && /^@.$/.test(inputBox.value)) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /@.$/.test(inputBox.value)) return mentionBox.visible(true);
         
         if (/@$/.test(inputBox.value)) {
             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
@@ -119,6 +119,10 @@ function load() {
             createMessage(false, inputBox.value.trim());
             inputBox.value = '';
         }
+    });
+
+    inputBox.addEventListener('keypress', e => {
+        if (/@$/.test(inputBox.value)) mentionBox.visible(false);
     });
 
     mentionBox.addEventListener('click', e => {
