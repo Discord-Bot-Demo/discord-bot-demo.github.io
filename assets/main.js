@@ -97,31 +97,28 @@ function load() {
     if (_DiscordBotDemo_Script.getAttribute('beginning_message')) createMessage(true, _DiscordBotDemo_Script.getAttribute('beginning_message').trim());
 
     inputBox.addEventListener('keydown', e => {
-        if (inputBox.value.trim() === '' && e.key === '@') mentionBox.visible(true);
+        if (e.key === '@') mentionBox.visible(true);
 
-        if (e.key === 'Backspace' && /^.@$/.test(inputBox.value.trim())) return mentionBox.visible(true);
-        if (e.key === 'Backspace' && /@$/.test(inputBox.value.trim())) return mentionBox.visible(false);
-        if (e.key === 'Backspace' && /^@.$/.test(inputBox.value.trim())) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /^.@$/.test(inputBox.value)) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /@$/.test(inputBox.value)) return mentionBox.visible(false);
+        if (e.key === 'Backspace' && /^@.$/.test(inputBox.value)) return mentionBox.visible(true);
         
-        if (inputBox.value.trim().startsWith('@')) {
+        if (/@$/.test(inputBox.value)) {
             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
                 e.preventDefault();
                 mentionBox.visible(false);
             }
 
-            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') inputBox.value = inputBox.value.replace(`@`, `@${bot.username} `);
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') inputBox.value = inputBox.value.replace(`@`, `@${user.username} `);
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') inputBox.value = inputBox.value.replace(/@$/, `@${bot.username} `);
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') inputBox.value = inputBox.value.replace(/@$/, `@${user.username} `);
         }
 
-        if (e.key === 'Enter' && inputBox.value.trim()) {
+        if (e.key === 'Enter' && inputBox.value) {
+        
             mentionBox.visible(false);
             createMessage(false, inputBox.value.trim());
             inputBox.value = '';
         }
-    });
-    
-    inputBox.addEventListener('keypress', e => {
-        if (/@/.test(inputBox.value.trim())) mentionBox.visible(false);
     });
 
     mentionBox.addEventListener('click', e => {

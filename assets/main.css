@@ -181,9 +181,9 @@
     padding: 0px 8px;
 }
 
-.discord-bot-demo #main #inner #text-area  #text-box {
+.discord-bot-demo #main #inner #text-area #text-box {
     background-color: var(--main-inner-text-box-color);
-    height: 44px;
+    max-height: 200px;
     width: 97%;
     left: 2%;
     bottom: 2%;
@@ -192,19 +192,26 @@
     justify-content: center;
     margin: auto;
     margin-bottom: 2%;
-    min-height: 44px;
 }
 
-.discord-bot-demo #main #inner #text-area  #text-box #input {
+.discord-bot-demo #main #inner #text-area #text-box #input {
     background: none;
     border: none;
     color: var(--main-inner-text-box-input-color);
     font-size: 1em;
     width: 98%;
     height: 98%;
+    font-family: 'Roboto', sans-serif;
+    resize: both;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    overflow: hidden;
+    resize: none;
+    max-height: 173px;
+    word-break: break-all;
 }
 
-.discord-bot-demo #main #inner #text-area  #text-box #input:focus {
+.discord-bot-demo #main #inner #text-area #text-box #input:focus {
     outline: none;
 }
 
