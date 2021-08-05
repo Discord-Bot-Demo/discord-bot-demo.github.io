@@ -181,6 +181,10 @@
     padding: 0px 8px;
 }
 
+.discord-bot-demo #main #inner #text-area #mention-box #content[selected="true"] {
+    background: grey;
+}
+
 .discord-bot-demo #main #inner #text-area #text-box {
     background-color: var(--main-inner-text-box-color);
     max-height: 200px;

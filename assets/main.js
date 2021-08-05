@@ -83,46 +83,65 @@ function load() {
     </div>
     </div></div>`;
 
-    const inputBox = document.querySelector('.discord-bot-demo #inner #text-box #input');
-    const mentionBox = document.querySelector('.discord-bot-demo #inner #mention-box');
-    const voiceChannel = document.querySelector('.discord-bot-demo #inner #channels #voice');
+    const inputBox = document.querySelector('.discord-bot-demo #main #inner #channel-area #text-box #input');
+    const mentionBox = document.querySelector('.discord-bot-demo #main #inner #channel-area #text-area #mention-box');
+    const voiceChannel = document.querySelector('.discord-bot-demo #main #inner #channels #voice');
     const memberList = document.querySelector('.discord-bot-demo #main #inner #channels .member-list');
     const voiceControls = document.querySelector('.discord-bot-demo #main #inner #channels .voice-controls .content');
     const vcButton = document.querySelector('.discord-bot-demo #main #inner #channels .voice-controls .content button');
 
     mentionBox.visible = mode => {
-        mode ? mentionBox.innerHTML = `<div id="title">members (${/Mobile|Android|BlackBerry/.test(navigator.userAgent) ? 'touch' : 'use arrow keys'} to choose)</div><div id="content" type="bot"><img src="${bot.avatar}"> ${bot.username}</div><div id="content" type="user"><img src="${user.avatar}"> ${user.username}</div>` : mentionBox.innerHTML = '';
+        mode ? mentionBox.innerHTML = `<div id="title">members</div><div id="content" type="bot" selected="true"><img src="${bot.avatar}"> ${bot.username}</div><div id="content" type="user"><img src="${user.avatar}"> ${user.username}</div>` : mentionBox.innerHTML = '';
     }
 
     if (_DiscordBotDemo_Script.getAttribute('beginning_message')) createMessage(true, _DiscordBotDemo_Script.getAttribute('beginning_message').trim());
 
     inputBox.addEventListener('keydown', e => {
+        if (e.key === 'Enter') e.preventDefault();
         if (e.key === '@') mentionBox.visible(true);
 
-        if (e.key === 'Backspace' && /.@$/.test(inputBox.value)) return mentionBox.visible(true);
-        if (e.key === 'Backspace' && /@$/.test(inputBox.value)) return mentionBox.visible(false);
-        if (e.key === 'Backspace' && /@.$/.test(inputBox.value)) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /.@$/.test(inputBox.textContent)) return mentionBox.visible(true);
+        if (e.key === 'Backspace' && /@$/.test(inputBox.textContent)) return mentionBox.visible(false);
+        if (e.key === 'Backspace' && /@.$/.test(inputBox.textContent)) return mentionBox.visible(true);
         
-        if (/@$/.test(inputBox.value)) {
-            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        if (/@$/.test(inputBox.textContent)) {
+            const user = document.querySelector('.discord-bot-demo #main #inner #channel-area #text-area #mention-box #content[type="user"]');
+            const bot = document.querySelector('.discord-bot-demo #main #inner #channel-area #text-area #mention-box #content[type="bot"]');
+            const selected = document.querySelector('.discord-bot-demo #main #inner #channel-area #text-area #mention-box #content[selected="true"]');
+
+            if (e.key === 'ArrowUp') {
                 e.preventDefault();
-                mentionBox.visible(false);
+                user.setAttribute('selected', 'false');
+                bot.setAttribute('selected', 'true');
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                bot.setAttribute('selected', 'false');
+                user.setAttribute('selected', 'true');
             }
 
-            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') inputBox.value = inputBox.value.replace(/@$/, `@${bot.username} `);
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') inputBox.value = inputBox.value.replace(/@$/, `@${user.username} `);
+            if (e.key === 'Enter' || e.keyShift && e.key === 'Enter') {
+                mentionBox.visible(false);
+                inputBox.textContent = inputBox.textContent.replace(/@$/, `@${selected.textContent.trimStart()} `);
+                const selection = window.getSelection();
+                const range = document.createRange();
+                selection.removeAllRanges();
+                range.selectNodeContents(inputBox);
+                range.collapse(false);
+                selection.addRange(range);
+                return inputBox.focus();
+            }
         }
 
-        if (e.key === 'Enter' && inputBox.value) {
-        
+        if (e.key === 'Enter' && inputBox.textContent) {
             mentionBox.visible(false);
-            createMessage(false, inputBox.value.trim());
-            inputBox.value = '';
+            createMessage(false, inputBox.textContent.trim());
+            inputBox.textContent = '';
         }
     });
 
-    inputBox.addEventListener('keypress', e => {
-        if (/@$/.test(inputBox.value)) mentionBox.visible(false);
+    inputBox.addEventListener('keypress', () => {
+        if (/@$/.test(inputBox.textContent)) mentionBox.visible(false);
     });
 
     mentionBox.addEventListener('click', e => {
@@ -130,12 +149,19 @@ function load() {
         const img = e.target.getAttribute('src');
 
         mentionBox.visible(false);
-        if (type === 'bot' || img === bot.avatar) inputBox.value = inputBox.value.replace(`@`, `@${bot.username} `);
-        if (type === 'user' || img === user.avatar) inputBox.value = inputBox.value.replace(`@`, `@${user.username} `);
+        if (type === 'bot' || img === bot.avatar) inputBox.textContent = inputBox.textContent.replace(`@`, `@${bot.username}`);
+        if (type === 'user' || img === user.avatar) inputBox.textContent = inputBox.textContent.replace(`@`, `@${user.username}`);
+
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents(inputBox);
+        range.collapse(false);
+        selection.addRange(range);
+        inputBox.focus();
     });
     
     voiceChannel.addEventListener('click', () => {
-
         if (DiscordBotDemo.userInVC) return;
 
         const member = `<div class="member user">
@@ -148,7 +174,6 @@ function load() {
     });
 
     vcButton.addEventListener('click', () => {
-
         const member = document.querySelector('.discord-bot-demo #inner #channels .member-list .member.user');
         
         if (!DiscordBotDemo.botInVC) {
