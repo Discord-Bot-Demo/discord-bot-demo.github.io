@@ -208,17 +208,27 @@
     background: none;
     border: none;
     color: var(--main-inner-text-box-input-color);
-    font-size: 1em;
     width: 98%;
     height: 98%;
     font-family: 'Roboto', sans-serif;
-    resize: both;
     padding-top: 12px;
     padding-bottom: 12px;
-    overflow: hidden;
-    resize: none;
+    overflow-y: auto;
     max-height: 173px;
-    word-break: break-all;
+}
+
+.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar {
+    width: 5px;
+}
+
+.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar-track {
+    background-color: var(--main-inner-messages-scrollbar-track-color);
+    border-radius: 12px;
+}
+
+.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar-thumb {
+    background-color: var(--main-inner-messages-scrollbar-thumb-color);
+    border-radius: 12px;
 }
 
 .discord-bot-demo #main #inner #text-area #text-box #input:focus {

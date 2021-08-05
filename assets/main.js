@@ -122,7 +122,7 @@ function load() {
 
             if (e.key === 'Enter' || e.keyShift && e.key === 'Enter') {
                 mentionBox.visible(false);
-                inputBox.textContent = inputBox.textContent.replace(/@$/, `@${selected.textContent.trimStart()} `);
+                inputBox.textContent = inputBox.textContent.replace(/@$/, `@${selected.textContent.trimStart()}`);
                 const selection = window.getSelection();
                 const range = document.createRange();
                 selection.removeAllRanges();
