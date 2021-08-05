@@ -66,7 +66,6 @@
     background-color: var(--main-inner-channels-channel-background-color-hover);
 }
 
-
 .discord-bot-demo #main #inner #channels #text #icon {
     width: 24px;
     height: 24px;
@@ -208,6 +207,7 @@
     background: none;
     border: none;
     color: var(--main-inner-text-box-input-color);
+    font-size: 1em;
     width: 98%;
     height: 98%;
     font-family: 'Roboto', sans-serif;
