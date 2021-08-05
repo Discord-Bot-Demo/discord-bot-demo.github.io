@@ -1,6 +1,7 @@
 function commandHandler(message) {
     if (message === `@${bot.username}`) createMessage(true, `<code>!github</code> - Get link to project's github<br>
     <code>!docs</code> - Go to documentation<br>
+    <code>!discord</code> - Get link to support server<br>
     <code>!say</code> - Say something as bot<br>
     <code>!radio</code> - Radio controls<br>
     <code>!leave</code> - Leave voice channel`);
@@ -14,6 +15,7 @@ function commandHandler(message) {
     
     if (command === 'github') createMessage(true, 'Here is the repo link: <a href="https://github.com/discord-bot-demo/discord-bot-demo.github.io" target="_blank">https://github.com/discord-bot-demo/discord-bot-demo.github.io</a>');
     if (command === 'docs') createMessage(true, 'Here is the docs link: <a href="https://discord-bot-demo.github.io/docs" target="_blank">https://discord-bot-demo.github.io/docs</a>');
+    if (command === 'discord') createMessage(true, '<a href="https://discord.gg/YAPsEdXEMY" target="_blank">https://discord.gg/YAPsEdXEMY</a>');
 
     if (command === 'say') {
         if (!args.length) return createMessage(true, 'Enter some args');
