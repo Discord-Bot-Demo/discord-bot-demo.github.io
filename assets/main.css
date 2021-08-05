@@ -198,6 +198,12 @@
     margin-bottom: 2%;
 }
 
+.discord-bot-demo #main #inner #text-area #text-box #input:empty:before {
+    content: "Enter command";
+    color: grey;
+    cursor: text;
+}
+
 .discord-bot-demo #main #inner #text-area #text-box #input {
     background: none;
     border: none;

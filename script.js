@@ -13,7 +13,7 @@ document.write(`<script src="https://unpkg.com/wc-discord-message@2.0.4/dist/wc-
                 <div id="text-area">
                 <div id="mention-box"></div>
                 <div id="text-box">
-                    <div contenteditable="true" id="input" spellcheck="false" autocomplete="off" placeholder="Enter command here"></div>
+                    <div contenteditable="true" id="input"></div>
                 </div>
                 </div>
                 </div>
