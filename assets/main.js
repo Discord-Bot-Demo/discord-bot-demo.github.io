@@ -140,10 +140,6 @@ function load() {
         }
     });
 
-    inputBox.addEventListener('keypress', () => {
-        if (/@$/.test(inputBox.textContent)) mentionBox.visible(false);
-    });
-
     mentionBox.addEventListener('click', e => {
         const type = e.target.getAttribute('type');
         const img = e.target.getAttribute('src');
@@ -242,6 +238,11 @@ const audio = {
         return this._a.volume*100;
     }
 }
+
+audio._a.addEventListener('pause', () => {
+    const isSpeaking = document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot').classList.contains('speaking');
+    if (DiscordBotDemo.botInVC && isSpeaking) document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot.speaking').classList.remove("speaking");
+})
 
 function createMessage(isBot, content, parseHTML = true) {
     const messagesDiv = document.querySelector('discord-messages');
