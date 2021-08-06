@@ -30,7 +30,11 @@ function commandHandler(message) {
             joinVoiceChannel();
             audio.play('https://streams.iloveradio.de/iloveradio5.mp3');
         }
-        if (args[0] === 'stop') audio.stop();
+        if (args[0] === 'stop') {
+            if (!DiscordBotDemo.botInVC) return createMessage(true, 'I\'m not in a voice channel');
+            if (!audio.isPlaying()) return createMessage(true, 'I\'m not playing any audio');
+            audio.stop();
+        }
 
         if (args[0] === 'volume') {
             if (!args[1]) return createMessage(true, `Current volume: ${audio.getVolume()}%`);

@@ -237,6 +237,9 @@ const audio = {
     },
     getVolume: function() {
         return this._a.volume*100;
+    },
+    isPlaying: function() {
+        return !this._a.paused;
     }
 }
 
