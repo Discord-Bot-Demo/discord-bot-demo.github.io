@@ -226,8 +226,9 @@ const audio = {
         document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot').classList += " speaking";
         this._a.play();
     },
-    stop: function() {        
-        if (DiscordBotDemo.botInVC) document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot.speaking').classList.remove("speaking");
+    stop: function() {
+        const isSpeaking = document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot').classList.contains('speaking');
+        if (DiscordBotDemo.botInVC && isSpeaking) document.querySelector('.discord-bot-demo #inner #channels .member-list .member.bot.speaking').classList.remove("speaking");
         this._a.pause();
         this._a.currentTime = 0;
     },
