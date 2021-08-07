@@ -1,4 +1,4 @@
-.discord-bot-demo {
+body {
     min-width: 900px;
     max-width: 1020px;
     /* Colors */
@@ -21,12 +21,9 @@
     --main-inner-text-box-input-color: #DCDDDE;
 }
 
-.discord-bot-demo #main {
+#main {
     min-height: 450px;
     max-height: 483px;
-}
-
-.discord-bot-demo #main #inner {
     background-color: var(--main-inner-color);
     font-family: 'Roboto', sans-serif;
     height: 100%;
@@ -38,7 +35,7 @@
     position: relative;
 }
 
-.discord-bot-demo #main #inner #channels {
+#main #channels {
     background-color: var(--main-inner-channels-color);
     height: 100%;
     width: 220px;
@@ -47,7 +44,7 @@
     user-select: none;
 }
 
-.discord-bot-demo #main #inner #channels #text {
+#main #channels #text {
     align-items: center;
     background-color: var(--main-inner-channels-channel-background-color);
     color: var(--main-inner-channels-channel-color);
@@ -56,7 +53,7 @@
     cursor: default;
 }
 
-.discord-bot-demo #main #inner #channels #voice {
+#main #channels #voice {
     align-items: center;
     color: var(--main-inner-channels-channel-color);
     height: 6%;
@@ -64,27 +61,27 @@
     cursor: pointer;
 }
 
-.discord-bot-demo #main #inner #channels #voice:hover {
+#main #channels #voice:hover {
     background-color: var(--main-inner-channels-channel-background-color-hover);
 }
 
-.discord-bot-demo #main #inner #channels #text #icon {
+#main #channels #text #icon {
     width: 24px;
     height: 24px;
 }
 
-.discord-bot-demo #main #inner #channels #voice #icon {
+#main #channels #voice #icon {
     width: 24px;
     height: 24px;
 }
 
-.discord-bot-demo #main #inner #channels .member-list {
+#main #channels .member-list {
     color: var(--main-inner-channels-member-list-color);
     margin-left: 20px;
     height: 76%;
 }
 
-.discord-bot-demo #main #inner #channels .voice-controls .content {
+#main #channels .voice-controls .content {
     height: 48px;
     display: flex;
     justify-content: center;
@@ -93,12 +90,12 @@
     color: var(--main-inner-channels-voice-controls-content-color);
 }
 
-.discord-bot-demo #main #inner #channels .voice-controls .content #title {
+#main #channels .voice-controls .content #title {
     margin-right: 22px;
     font-size: 18px;
 }
 
-.discord-bot-demo #main #inner #channels .voice-controls button {
+#main #channels .voice-controls button {
     background: 0;
     cursor: pointer;
     color: var(--main-inner-channels-voice-controls-button-color);
@@ -108,28 +105,28 @@
     height: 32px;
 }
 
-.discord-bot-demo #main #inner #channels .voice-controls button:hover {
+#main #channels .voice-controls button:hover {
     background: var(--main-inner-channels-voice-controls-button-background-hover);
 }
 
-.discord-bot-demo #main #inner #channels .member-list .member {
+#main #channels .member-list .member {
     align-items: center;
     display: flex;
     padding-bottom: 3%;
 }
 
-.discord-bot-demo #main #inner #channels .member-list .member.bot.speaking img {
+#main #channels .member-list .member.bot.speaking img {
     box-shadow: 0 0 0 2px green;
 }
 
-.discord-bot-demo #main #inner #channel-area {
+#main #channel-area {
     margin-left: 220px;
     position: absolute;
     height: 100%;
     width: 680px;
 }
 
-.discord-bot-demo #main #inner #messages {
+#main #messages {
     overflow: hidden;
     overflow-y: auto;
     max-height: 87%;
@@ -143,27 +140,27 @@
     user-select: none;
 }
 
-.discord-bot-demo #main #inner #messages::-webkit-scrollbar {
+#main #messages::-webkit-scrollbar {
     width: 8px;
 }
 
-.discord-bot-demo #main #inner #messages::-webkit-scrollbar-track {
+#main #messages::-webkit-scrollbar-track {
     background-color: var(--main-inner-messages-scrollbar-track-color);
     border-radius: 12px;
 }
 
-.discord-bot-demo #main #inner #messages::-webkit-scrollbar-thumb {
+#main #messages::-webkit-scrollbar-thumb {
     background-color: var(--main-inner-messages-scrollbar-thumb-color);
     border-radius: 12px;
 }
 
-.discord-bot-demo #main #inner #text-area {
+#main #text-area {
     position: absolute;
     bottom: 1px;
     width: 100%;
 }
 
-.discord-bot-demo #main #inner #text-area #mention-box {
+#main #text-area #mention-box {
     background-color: var(--main-inner-mention-box-color);
     margin-right: 14px;
     margin-left: 14px;
@@ -171,14 +168,14 @@
     user-select: none;
 }
 
-.discord-bot-demo #main #inner #text-area #mention-box #title {
+#main #text-area #mention-box #title {
     padding-bottom: 1px;
     padding-top: 1px;
     text-transform: uppercase;
     color: var(--main-inner-mention-box-title-color);
 }
 
-.discord-bot-demo #main #inner #text-area #mention-box #content {
+#main #text-area #mention-box #content {
     margin-left: 10px;
     font-size: 14px;
     line-height: 16px;
@@ -187,11 +184,11 @@
     padding: 0px 8px;
 }
 
-.discord-bot-demo #main #inner #text-area #mention-box #content[selected="true"] {
+#main #text-area #mention-box #content[selected="true"] {
     background: grey;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box {
+#main #text-area #text-box {
     background-color: var(--main-inner-text-box-color);
     max-height: 200px;
     width: 97%;
@@ -204,13 +201,13 @@
     margin-bottom: 2%;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input:empty:before {
+#main #text-area #text-box #input:empty:before {
     content: "Enter command";
     color: grey;
     cursor: text;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input {
+#main #text-area #text-box #input {
     background: none;
     border: none;
     color: var(--main-inner-text-box-input-color);
@@ -223,25 +220,25 @@
     max-height: 173px;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar {
+#main #text-area #text-box #input::-webkit-scrollbar {
     width: 5px;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar-track {
+#main #text-area #text-box #input::-webkit-scrollbar-track {
     background-color: var(--main-inner-messages-scrollbar-track-color);
     border-radius: 12px;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input::-webkit-scrollbar-thumb {
+#main #text-area #text-box #input::-webkit-scrollbar-thumb {
     background-color: var(--main-inner-messages-scrollbar-thumb-color);
     border-radius: 12px;
 }
 
-.discord-bot-demo #main #inner #text-area #text-box #input:focus {
+#main #text-area #text-box #input:focus {
     outline: none;
 }
 
-.discord-bot-demo img {
+img {
     border-radius: 50%;
     height: 24px;
 }
