@@ -28,6 +28,7 @@
 
 .discord-bot-demo #main #inner {
     background-color: var(--main-inner-color);
+    font-family: 'Roboto', sans-serif;
     height: 100%;
     width: 100%;
     right: 0;
@@ -210,7 +211,6 @@
     font-size: 1em;
     width: 98%;
     height: 98%;
-    font-family: 'Roboto', sans-serif;
     padding-top: 12px;
     padding-bottom: 12px;
     overflow-y: auto;
