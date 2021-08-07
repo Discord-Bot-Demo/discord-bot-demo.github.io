@@ -91,7 +91,7 @@ function load() {
     const vcButton = document.querySelector('.discord-bot-demo #main #inner #channels .voice-controls .content button');
 
     mentionBox.visible = mode => {
-        mode ? mentionBox.innerHTML = `<div id="title">members</div><div id="content" type="bot" selected="true"><img src="${bot.avatar}"> ${bot.username}</div><div id="content" type="user"><img src="${user.avatar}"> ${user.username}</div>` : mentionBox.innerHTML = '';
+        mode ? mentionBox.innerHTML = `<div id="title">members</div><div id="content" type="bot" selected="true"><img draggable="false" src="${bot.avatar}"> ${bot.username}</div><div id="content" type="user"><img draggable="false" src="${user.avatar}"> ${user.username}</div>` : mentionBox.innerHTML = '';
     }
 
     if (_DiscordBotDemo_Script.getAttribute('beginning_message')) createMessage(true, _DiscordBotDemo_Script.getAttribute('beginning_message').trim());
@@ -161,7 +161,7 @@ function load() {
         if (DiscordBotDemo.userInVC) return;
 
         const member = `<div class="member user">
-        <img src="${user.avatar}"> ${user.username}
+        <img draggable="false" src="${user.avatar}"> ${user.username}
         </div>`;
 
         memberList.innerHTML += member;
@@ -199,7 +199,7 @@ function joinVoiceChannel() {
     const memberList = document.querySelector('.discord-bot-demo #main #inner #channels .member-list');
 
     const member = `<div class="member bot">
-    <img src="${bot.avatar}"> ${bot.username}
+    <img draggable="false" src="${bot.avatar}"> ${bot.username}
     </div>`;
 
     if (!DiscordBotDemo.botInVC) memberList.innerHTML += member;
@@ -268,6 +268,7 @@ function createMessage(isBot, content, parseHTML = true) {
     messagesDiv.append(message);
 
     setTimeout(function() {
+        message.querySelector('.discord-author-avatar img').setAttribute('draggable', false);
         const messages = document.querySelector('.discord-bot-demo #inner #messages');
         messages.scrollTo(0, messages.scrollHeight);
     }, 50);

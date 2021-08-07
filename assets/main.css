@@ -44,6 +44,7 @@
     width: 220px;
     border-top-left-radius: 5px;
     overflow: hidden;
+    user-select: none;
 }
 
 .discord-bot-demo #main #inner #channels #text {
@@ -138,6 +139,10 @@
     border: none;
 }
 
+.discord-messages .discord-author-avatar img {
+    user-select: none;
+}
+
 .discord-bot-demo #main #inner #messages::-webkit-scrollbar {
     width: 8px;
 }
@@ -163,6 +168,7 @@
     margin-right: 14px;
     margin-left: 14px;
     border-radius: 5px 5px 0px 0px;
+    user-select: none;
 }
 
 .discord-bot-demo #main #inner #text-area #mention-box #title {
