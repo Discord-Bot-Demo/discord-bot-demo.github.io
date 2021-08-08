@@ -17,6 +17,7 @@ if (user_avatar) params.append('user_avatar', encodeURIComponent(user_avatar));
 if (bot_username) params.append('bot_username', encodeURIComponent(bot_username));
 if (bot_avatar) params.append('bot_avatar', encodeURIComponent(bot_avatar));
 if (width) params.append('width', encodeURIComponent(width));
+if (commandHandler) params.append('handler', encodeURIComponent(commandHandler));
 if (height) params.append('height', encodeURIComponent(height));
 if (beginning_message) params.append('msg', encodeURIComponent(beginning_message));
 const finalUrl = `${url}?${decodeURIComponent(params)}`;
