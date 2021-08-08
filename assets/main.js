@@ -47,8 +47,6 @@ const DiscordBotDemo = {
 }
 
 function load() {
-    const root = document.querySelector('#main');
-
     // Hide command handler from devtools
     const cmdElement = document.createElement('script');
 
@@ -60,7 +58,7 @@ function load() {
     document.querySelector('#DiscordBotDemo_CommandHandler').remove();
 
     // Demo channels
-    const channelsDiv = document.querySelector('#main #channels');
+    const channelsDiv = document.querySelector('#channels');
     
     channelsDiv.innerHTML = `<div id="text">
         <svg id="icon">
@@ -92,12 +90,12 @@ function load() {
         </div>
     </div>`;
 
-    const inputBox = document.querySelector('#main #channel-area #text-box #input');
-    const mentionBox = document.querySelector('#main #channel-area #text-area #mention-box');
-    const voiceChannel = document.querySelector('#main #channels #voice');
-    const memberList = document.querySelector('#main #channels .member-list');
-    const voiceControls = document.querySelector('#main #channels .voice-controls .content');
-    const vcButton = document.querySelector('#main #channels .voice-controls .content button');
+    const inputBox = document.querySelector('#channel-area #text-box #input');
+    const mentionBox = document.querySelector('#channel-area #text-area #mention-box');
+    const voiceChannel = document.querySelector('#channels #voice');
+    const memberList = document.querySelector('#channels .member-list');
+    const voiceControls = document.querySelector('#channels .voice-controls .content');
+    const vcButton = document.querySelector('#channels .voice-controls .content button');
 
     mentionBox.visible = mode => {
         mode ? mentionBox.innerHTML = `<div id="title">members</div><div id="content" type="bot" selected="true"><img draggable="false" src="${data.bot.avatar}"> ${data.bot.username}</div><div id="content" type="user"><img draggable="false" src="${data.user.avatar}"> ${data.user.username}</div>` : mentionBox.innerHTML = '';
@@ -114,9 +112,9 @@ function load() {
         if (e.key === 'Backspace' && /@.$/.test(inputBox.textContent)) return mentionBox.visible(true);
     
         if (/@$/.test(inputBox.textContent)) {
-            const user = document.querySelector('#main #channel-area #text-area #mention-box #content[type="user"]');
-            const bot = document.querySelector('#main #channel-area #text-area #mention-box #content[type="bot"]');
-            const selected = document.querySelector('#main #channel-area #text-area #mention-box #content[selected="true"]');
+            const user = document.querySelector('#channel-area #text-area #mention-box #content[type="user"]');
+            const bot = document.querySelector('#channel-area #text-area #mention-box #content[type="bot"]');
+            const selected = document.querySelector('#channel-area #text-area #mention-box #content[selected="true"]');
 
             if (e.key === 'ArrowUp') {
                 e.preventDefault();
@@ -206,7 +204,7 @@ window.addEventListener('load', load);
 
 // Voice channel function
 function joinVoiceChannel() {
-    const memberList = document.querySelector('#main #channels .member-list');
+    const memberList = document.querySelector('#channels .member-list');
     
     const member = `<div class="member bot">
         <img draggable="false" src="${data.bot.avatar}"> ${data.bot.username}
@@ -217,7 +215,7 @@ function joinVoiceChannel() {
 }
 
 function leaveVoiceChannel() {
-    const member = document.querySelector('#main #channels .member-list .member.bot');
+    const member = document.querySelector('#channels .member-list .member.bot');
 
     if (DiscordBotDemo.botInVC) member.remove();
     DiscordBotDemo.botInVC = false;

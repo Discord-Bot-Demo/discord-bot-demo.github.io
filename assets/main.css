@@ -1,6 +1,4 @@
-body {
-    width: 900px;
-    /* Colors */
+:root {
     --main-inner-color: #36393F;
     --main-inner-channels-color: #2f3136;
     --main-inner-channels-channel-color: #FFFFFF;
@@ -20,18 +18,21 @@ body {
     --main-inner-text-box-input-color: #DCDDDE;
 }
 
-#main {
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    width: 899px;
     height: 450px;
     background-color: var(--main-inner-color);
-    font-family: 'Roboto', sans-serif;
-    right: 0;
-    bottom: 0;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-#main #channels {
+#channels {
     background-color: var(--main-inner-channels-color);
     height: 100%;
     width: 220px;
@@ -40,7 +41,7 @@ body {
     user-select: none;
 }
 
-#main #channels #text {
+#channels #text {
     align-items: center;
     background-color: var(--main-inner-channels-channel-background-color);
     color: var(--main-inner-channels-channel-color);
@@ -49,7 +50,7 @@ body {
     cursor: default;
 }
 
-#main #channels #voice {
+#channels #voice {
     align-items: center;
     color: var(--main-inner-channels-channel-color);
     height: 6%;
@@ -57,27 +58,27 @@ body {
     cursor: pointer;
 }
 
-#main #channels #voice:hover {
+#channels #voice:hover {
     background-color: var(--main-inner-channels-channel-background-color-hover);
 }
 
-#main #channels #text #icon {
+#channels #text #icon {
     width: 24px;
     height: 24px;
 }
 
-#main #channels #voice #icon {
+#channels #voice #icon {
     width: 24px;
     height: 24px;
 }
 
-#main #channels .member-list {
+#channels .member-list {
     color: var(--main-inner-channels-member-list-color);
     margin-left: 20px;
     height: 76%;
 }
 
-#main #channels .voice-controls .content {
+#channels .voice-controls .content {
     height: 48px;
     display: flex;
     justify-content: center;
@@ -86,12 +87,12 @@ body {
     color: var(--main-inner-channels-voice-controls-content-color);
 }
 
-#main #channels .voice-controls .content #title {
+#channels .voice-controls .content #title {
     margin-right: 22px;
     font-size: 18px;
 }
 
-#main #channels .voice-controls button {
+#channels .voice-controls button {
     background: 0;
     cursor: pointer;
     color: var(--main-inner-channels-voice-controls-button-color);
@@ -101,28 +102,28 @@ body {
     height: 32px;
 }
 
-#main #channels .voice-controls button:hover {
+#channels .voice-controls button:hover {
     background: var(--main-inner-channels-voice-controls-button-background-hover);
 }
 
-#main #channels .member-list .member {
+#channels .member-list .member {
     align-items: center;
     display: flex;
     padding-bottom: 3%;
 }
 
-#main #channels .member-list .member.bot.speaking img {
+#channels .member-list .member.bot.speaking img {
     box-shadow: 0 0 0 2px green;
 }
 
-#main #channel-area {
+#channel-area {
     margin-left: 220px;
     position: absolute;
     height: 100%;
     width: 680px;
 }
 
-#main #messages {
+#messages {
     overflow: hidden;
     overflow-y: auto;
     max-height: 87%;
@@ -136,27 +137,27 @@ body {
     user-select: none;
 }
 
-#main #messages::-webkit-scrollbar {
+#messages::-webkit-scrollbar {
     width: 8px;
 }
 
-#main #messages::-webkit-scrollbar-track {
+#messages::-webkit-scrollbar-track {
     background-color: var(--main-inner-messages-scrollbar-track-color);
     border-radius: 12px;
 }
 
-#main #messages::-webkit-scrollbar-thumb {
+#messages::-webkit-scrollbar-thumb {
     background-color: var(--main-inner-messages-scrollbar-thumb-color);
     border-radius: 12px;
 }
 
-#main #text-area {
+#text-area {
     position: absolute;
     bottom: 1px;
     width: 100%;
 }
 
-#main #text-area #mention-box {
+#text-area #mention-box {
     background-color: var(--main-inner-mention-box-color);
     margin-right: 14px;
     margin-left: 14px;
@@ -164,14 +165,14 @@ body {
     user-select: none;
 }
 
-#main #text-area #mention-box #title {
+#text-area #mention-box #title {
     padding-bottom: 1px;
     padding-top: 1px;
     text-transform: uppercase;
     color: var(--main-inner-mention-box-title-color);
 }
 
-#main #text-area #mention-box #content {
+#text-area #mention-box #content {
     margin-left: 10px;
     font-size: 14px;
     line-height: 16px;
@@ -180,11 +181,11 @@ body {
     padding: 0px 8px;
 }
 
-#main #text-area #mention-box #content[selected="true"] {
+#text-area #mention-box #content[selected="true"] {
     background: grey;
 }
 
-#main #text-area #text-box {
+#text-area #text-box {
     background-color: var(--main-inner-text-box-color);
     max-height: 200px;
     width: 97%;
@@ -197,13 +198,13 @@ body {
     margin-bottom: 2%;
 }
 
-#main #text-area #text-box #input:empty:before {
+#text-area #text-box #input:empty:before {
     content: "Enter command";
     color: grey;
     cursor: text;
 }
 
-#main #text-area #text-box #input {
+#text-area #text-box #input {
     background: none;
     border: none;
     color: var(--main-inner-text-box-input-color);
@@ -216,21 +217,21 @@ body {
     max-height: 173px;
 }
 
-#main #text-area #text-box #input::-webkit-scrollbar {
+#text-area #text-box #input::-webkit-scrollbar {
     width: 5px;
 }
 
-#main #text-area #text-box #input::-webkit-scrollbar-track {
+#text-area #text-box #input::-webkit-scrollbar-track {
     background-color: var(--main-inner-messages-scrollbar-track-color);
     border-radius: 12px;
 }
 
-#main #text-area #text-box #input::-webkit-scrollbar-thumb {
+#text-area #text-box #input::-webkit-scrollbar-thumb {
     background-color: var(--main-inner-messages-scrollbar-thumb-color);
     border-radius: 12px;
 }
 
-#main #text-area #text-box #input:focus {
+#text-area #text-box #input:focus {
     outline: none;
 }
 
