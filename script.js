@@ -1,22 +1,24 @@
 const _DiscordBotDemo_Script = document.currentScript;
 
-document.write(`<script src="https://unpkg.com/wc-discord-message@2.0.4/dist/wc-discord-message/wc-discord-message.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://discord-bot-demo.github.io/assets/main.css">
-    <script src="https://discord-bot-demo.github.io/assets/main.js"></script>
+const width = _DiscordBotDemo_Script.getAttribute('width');
+const height = _DiscordBotDemo_Script.getAttribute('height');
+const commandHandler = _DiscordBotDemo_Script.getAttribute('command_handler');
+const beginning_message = _DiscordBotDemo_Script.getAttribute('beginning_message');
+const user_username = _DiscordBotDemo_Script.getAttribute('user_username');
+const user_avatar = _DiscordBotDemo_Script.getAttribute('user_avatar');
+const bot_username = _DiscordBotDemo_Script.getAttribute('bot_username');
+const bot_avatar = _DiscordBotDemo_Script.getAttribute('bot_avatar');
 
-    <div class="discord-bot-demo">
-        <div id="main">
-            <div id="inner">
-            <div id="channels"></div>
-            <div id="channel-area">
-            <div id="messages"><discord-messages></discord-messages></div>
-                <div id="text-area">
-                <div id="mention-box"></div>
-                <div id="text-box">
-                    <div contenteditable="true" id="input"></div>
-                </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
+const url = 'https://discord-bot-demo.github.io/demo.html';
+const params = new URLSearchParams(url);
+
+if (user_username) params.append('user_username', encodeURIComponent(user_username));
+if (user_avatar) params.append('user_avatar', encodeURIComponent(user_avatar));
+if (bot_username) params.append('bot_username', encodeURIComponent(bot_username));
+if (bot_avatar) params.append('bot_avatar', encodeURIComponent(bot_avatar));
+if (width) params.append('width', encodeURIComponent(width));
+if (height) params.append('height', encodeURIComponent(height));
+if (beginning_message) params.append('msg', encodeURIComponent(beginning_message));
+const finalUrl = `${url}?${decodeURIComponent(params)}`;
+
+document.write(`<iframe id="DiscordBotDemoFrame" width="100%" height="100%" frameBorder="0" scrolling="no" src="${finalUrl}"></iframe>`);
