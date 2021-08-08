@@ -16,10 +16,6 @@ const defaultUserAvatars = [
 ]
 
 const defaults = {
-    style: {
-        height: '450px',
-        width: '900px'
-    },
     avatars: {
         user: defaultUserAvatars[Math.floor(Math.random() * defaultUserAvatars.length)],
         bot: 'https://discord.com/assets/f78426a064bc9dd24847519259bc42af.png'
@@ -39,8 +35,6 @@ const data = {
         username: document.location.href.includes('bot_username=') ? decodeURIComponent(document.location.href.split('bot_username=')[1].split('&')[0]) : defaults.usernames.bot,
         avatar: document.location.href.includes('bot_avatar=') ? decodeURIComponent(document.location.href.split('bot_avatar=')[1].split('&')[0]) : defaults.avatars.bot
     },
-    width: document.location.href.includes('width=') ? decodeURIComponent(document.location.href.split('width=')[1].split('&')[0]) : defaults.style.width,
-    height: document.location.href.includes('height=') ? decodeURIComponent(document.location.href.split('height=')[1].split('&')[0]) : defaults.style.height,
     commandHandler: document.location.href.includes('handler=') ? decodeURIComponent(document.location.href.split('handler=')[1].split('&')[0]) : 'commandHandler',
     beginning_message: document.location.href.includes('msg=') ? decodeURIComponent(document.location.href.split('msg=')[1].split('&')[0]) : ''
 }
@@ -54,9 +48,6 @@ const DiscordBotDemo = {
 
 function load() {
     const root = document.querySelector('#main');
-    
-    root.style = `width: ${data.width};
-    height: ${data.height};`
 
     // Hide command handler from devtools
     const cmdElement = document.createElement('script');

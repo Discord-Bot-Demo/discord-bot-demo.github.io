@@ -1,6 +1,5 @@
 body {
-    min-width: 900px;
-    max-width: 1020px;
+    width: 900px;
     /* Colors */
     --main-inner-color: #36393F;
     --main-inner-channels-color: #2f3136;
@@ -22,12 +21,9 @@ body {
 }
 
 #main {
-    min-height: 450px;
-    max-height: 483px;
+    height: 450px;
     background-color: var(--main-inner-color);
     font-family: 'Roboto', sans-serif;
-    height: 100%;
-    width: 100%;
     right: 0;
     bottom: 0;
     display: flex;
