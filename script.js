@@ -7,7 +7,7 @@ const user_avatar = _DiscordBotDemo_Script.getAttribute('user_avatar');
 const bot_username = _DiscordBotDemo_Script.getAttribute('bot_username');
 const bot_avatar = _DiscordBotDemo_Script.getAttribute('bot_avatar');
 
-const url = 'demo.html';
+const url = 'https://disccord-bot-demo.github.io/demo.html';
 const params = new URLSearchParams(url.search);
 
 if (user_username) params.append('user_username', encodeURIComponent(user_username));
