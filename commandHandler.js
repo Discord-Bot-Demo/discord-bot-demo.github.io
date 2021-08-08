@@ -1,5 +1,5 @@
 function commandHandler(message) {
-    if (message === `@${data.bot.username}`) createMessage(true, `<code>!github</code> - Get link to project's github<br>
+    if (message === `@${bot.username}`) createMessage(true, `<code>!github</code> - Get link to project's github<br>
     <code>!docs</code> - Go to documentation<br>
     <code>!discord</code> - Get link to support server<br>
     <code>!say</code> - Say something as bot<br>
