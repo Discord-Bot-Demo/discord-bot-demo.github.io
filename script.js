@@ -9,15 +9,16 @@ const user_avatar = _DiscordBotDemo_Script.getAttribute('user_avatar');
 const bot_username = _DiscordBotDemo_Script.getAttribute('bot_username');
 const bot_avatar = _DiscordBotDemo_Script.getAttribute('bot_avatar');
 
-let url = 'https://discord-bot-demo.github.io/demo.html';
+const url = new URL('https://discord-bot-demo.github.io/demo.html');
+const params = new URLSearchParams(url);
 
-const querySign = url.includes('?') ? '&' : '?';
-if (user_username !== null) url += `${querySign}user_username=${user_username}`;
-if (user_avatar !== null) url += `${querySign}user_avatar=${user_avatar}`;
-if (bot_username !== null) url += `${querySign}bot_username=${bot_username}`;
-if (bot_avatar !== null) url += `${querySign}bot_avatar=${bot_avatar}`;
-if (width !== null) url += `${querySign}width=${width}`;
-if (height !== null) url += `${querySign}height=${height}`;
-if (beginning_message !== null) url += `${querySign}msg=${beginning_message}`;
+if (user_username !== null) params.append('user_username', encodeURIComponent(user_username));
+if (user_avatar !== null) params.append('user_avatar', encodeURIComponent(user_avatar));
+if (bot_username !== null) params.append('bot_username', encodeURIComponent(bot_username));
+if (bot_avatar !== null) params.append('bot_avatar', encodeURIComponent(bot_avatar));
+if (width !== null) params.append('width', encodeURIComponent(width));
+if (height !== null) params.append('height', encodeURIComponent(height));
+if (beginning_message !== null) params.append('msg', encodeURIComponent(beginning_message));
+const finalUrl = `${url}?${params}`;
 
-document.write(`<iframe id="DiscordBotDemoFrame" width="100%" height="100%" frameBorder="0" scrolling="no" src="${url}"></iframe>`);
+document.write(`<iframe id="DiscordBotDemoFrame" width="100%" height="100%" frameBorder="0" scrolling="no" src="${decodeURIComponent(finalUrl)}"></iframe>`);
