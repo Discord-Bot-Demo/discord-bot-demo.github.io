@@ -258,7 +258,7 @@ audio._a.addEventListener('pause', () => {
     if (DiscordBotDemo.botInVC && isSpeaking) document.querySelector('#channels .member-list .member.bot.speaking').classList.remove("speaking");
 });
 
-function createMessage(isBot, content, parseHTML = true) {
+async function createMessage(isBot, content, parseHTML = true) {
     const messagesDiv = document.querySelector('discord-messages');
     const message = document.createElement('discord-message');
 
@@ -275,10 +275,10 @@ function createMessage(isBot, content, parseHTML = true) {
     if (isBot && !parseHTML) message.textContent = contentRaw;
     if (isBot && parseHTML) message.innerHTML = content;
 
-    messagesDiv.append(message);
-
+    await messagesDiv.append(message);
+    message.querySelector('.discord-author-avatar img').setAttribute('draggable', false);
+    
     setTimeout(function() {
-        message.querySelector('.discord-author-avatar img').setAttribute('draggable', false);
         const messages = document.querySelector('#messages');
         messages.scrollTo(0, messages.scrollHeight);
     }, 50);
