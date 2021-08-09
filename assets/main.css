@@ -1,4 +1,26 @@
-:root {
+/* Light theme */
+.theme-light {
+    --main-inner-color: #ffffff;
+    --main-inner-channels-color: #f2f3f5;
+    --main-inner-channels-channel-color: black;
+    --main-inner-channels-channel-background-color: rgba(79, 84, 92, 0.32);
+    --main-inner-channels-channel-background-color-hover: rgba(79, 84, 92, 0.16);
+    --main-inner-channels-member-list-color: black;
+    --main-inner-channels-voice-controls-content-background-color: #ffffff;
+    --main-inner-channels-voice-controls-content-color: green;
+    --main-inner-channels-voice-controls-button-color: grey;
+    --main-inner-channels-voice-controls-button-background-hover: #b9bbbe;
+    --inner-messages-scrollbar-track-color: transparent;
+    --main-inner-messages-scrollbar-thumb-color: rgba(79, 84, 92, 0.3);
+    --main-inner-mention-box-color: #f8f9f9;
+    --main-inner-mention-box-title-color: black;
+    --main-inner-mention-box-content-color: black;
+    --main-inner-text-box-color: #ebedef;
+    --main-inner-text-box-input-color: black;
+}
+
+/* Dark theme */
+.theme-dark {
     --main-inner-color: #36393F;
     --main-inner-channels-color: #2f3136;
     --main-inner-channels-channel-color: #FFFFFF;
@@ -160,8 +182,9 @@ body {
     background-color: var(--main-inner-mention-box-color);
     margin-right: 14px;
     margin-left: 14px;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px;
     user-select: none;
+    margin-bottom: 5px;
 }
 
 #text-area #mention-box #title {
@@ -172,7 +195,6 @@ body {
 }
 
 #text-area #mention-box #content {
-    margin-left: 10px;
     font-size: 14px;
     line-height: 16px;
     font-weight: 500;
@@ -182,6 +204,7 @@ body {
 
 #text-area #mention-box #content[selected="true"] {
     background: grey;
+    border-radius: 5px;
 }
 
 #text-area #text-box {

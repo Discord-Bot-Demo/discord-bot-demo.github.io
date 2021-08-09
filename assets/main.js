@@ -26,6 +26,10 @@ const defaults = {
     }
 }
 
+//--------------//
+// Actual data //
+//------------//
+
 const data = {
     user: {
         username: document.location.href.includes('user_username=') ? decodeURIComponent(document.location.href.split('user_username=')[1].split('&')[0]) : defaults.usernames.user,
@@ -36,7 +40,9 @@ const data = {
         avatar: document.location.href.includes('bot_avatar=') ? decodeURIComponent(document.location.href.split('bot_avatar=')[1].split('&')[0]) : defaults.avatars.bot
     },
     commandHandler: document.location.href.includes('handler=') ? decodeURIComponent(document.location.href.split('handler=')[1].split('&')[0]) : 'commandHandler',
-    beginning_message: document.location.href.includes('msg=') ? decodeURIComponent(document.location.href.split('msg=')[1].split('&')[0]) : ''
+    beginning_message: document.location.href.includes('msg=') ? decodeURIComponent(document.location.href.split('msg=')[1].split('&')[0]) : '',
+    lightmode: document.location.href.includes('light=') ? decodeURIComponent(document.location.href.split('light=')[1].split('&')[0]) : '',
+    compactmode: document.location.href.includes('compact=') ? decodeURIComponent(document.location.href.split('compact=')[1].split('&')[0]) : ''
 }
 
 window.top.postMessage(data, '*');
@@ -47,6 +53,32 @@ const DiscordBotDemo = {
 }
 
 function load() {
+    const body = document.querySelector('body');
+    
+    body.classList.add(data.lightmode ? 'theme-light' : 'theme-dark');
+
+    if (data.lightmode) {
+        const lightThemeFixes = document.createElement('style');
+
+        document.head.appendChild(lightThemeFixes);
+
+        lightThemeFixes.append(`.discord-messages {
+        background-color: #ffffff;
+    }
+
+    .discord-messages .discord-message:hover {
+        background-color: #ffffff;
+    }
+
+    .discord-messages .discord-message .discord-message-content .discord-message-body {
+        color: black;
+    }
+    
+    .discord-messages .discord-author-info .discord-author-username {
+        color: black;
+    }`);
+}
+
     // Hide command handler from devtools
     const cmdElement = document.createElement('script');
 
@@ -260,6 +292,10 @@ function createMessage(isBot, content, parseHTML = true) {
     const messagesDiv = document.querySelector('discord-messages');
     const message = document.createElement('discord-message');
 
+    // Messages div attributes
+    if (data.compactmode) messagesDiv.setAttribute('compact-mode', true);
+
+    // Message attribubes
     message.setAttribute('author', isBot ? data.bot.username : data.user.username);
     message.setAttribute('bot', isBot);
     message.setAttribute('avatar', isBot ? data.bot.avatar : data.user.avatar);
