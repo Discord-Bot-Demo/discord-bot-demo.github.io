@@ -46,7 +46,7 @@ const DiscordBotDemo = {
     botInVC: false
 }
 
-function load() {
+function load() {    
     // Hide command handler from devtools
     const cmdElement = document.createElement('script');
 

@@ -28,7 +28,6 @@ body {
     height: 450px;
     background-color: var(--main-inner-color);
     display: flex;
-    flex-direction: column;
     position: relative;
 }
 
