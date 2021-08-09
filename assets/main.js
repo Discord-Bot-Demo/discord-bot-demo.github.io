@@ -53,6 +53,11 @@ const DiscordBotDemo = {
 }
 
 function load() {
+    // Prevent default context menu
+    window.addEventListener('contextmenu', e => {
+        e.preventDefault();
+    });
+
     const body = document.querySelector('body');
     
     body.classList.add(data.lightmode ? 'theme-light' : 'theme-dark');
@@ -173,7 +178,7 @@ function load() {
             }
         }
 
-        if (e.key === 'Enter' && inputBox.textContent) {
+        if (e.key === 'Enter' && inputBox.textContent.trim()) {
             mentionBox.visible(false);
             createMessage(false, inputBox.textContent.trim());
             inputBox.textContent = '';
@@ -318,4 +323,22 @@ function createMessage(isBot, content, parseHTML = true) {
     }, 50);
     
     if (!isBot) commandHandler(contentRaw);
+}
+
+function deleteMessage() {
+    const messages = document.querySelectorAll('discord-messages discord-message');
+    const message = messages[messages.length - 1];
+    setTimeout(() => {
+        message.remove();
+    }, 300);
+}
+
+function bulkDeleteMessages(count) {
+    for (let x = 0; x <= count; x++) {
+        setTimeout(() => {
+            const messages = document.querySelectorAll('discord-messages discord-message');
+            const message = messages[messages.length - 1];
+            if (message) message.remove();
+        }, 300)
+    }
 }

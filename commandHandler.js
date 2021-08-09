@@ -22,6 +22,9 @@ function commandHandler(message) {
         createMessage(true, args.join(' '), false);
     }
 
+    if (command === 'deletetest') deleteMessage();
+    if (command === 'bulkdelete') bulkDeleteMessages(5);
+    
     if (command === 'radio') {
         if (!args.length) return createMessage(true, 'Enter an action (play/stop/volume)');
         if (args.length && !DiscordBotDemo.userInVC) return createMessage(true, 'You must be in a voice channel');
