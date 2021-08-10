@@ -30,19 +30,21 @@ const defaults = {
 // Actual data //
 //------------//
 
+const params = new URLSearchParams(location.search);
+
 const data = {
     user: {
-        username: document.location.href.includes('user_username=') ? decodeURIComponent(document.location.href.split('user_username=')[1].split('&')[0]) : defaults.usernames.user,
-        avatar: document.location.href.includes('user_avatar=') ? decodeURIComponent(document.location.href.split('user_avatar=')[1].split('&')[0]) : defaults.avatars.user
+        username: params.get('uu') ? decodeURIComponent(params.get('uu')) : defaults.usernames.user,
+        avatar: params.get('ua') ? decodeURI(params.get('ua')) : defaults.avatars.user
     },
     bot: {
-        username: document.location.href.includes('bot_username=') ? decodeURIComponent(document.location.href.split('bot_username=')[1].split('&')[0]) : defaults.usernames.bot,
-        avatar: document.location.href.includes('bot_avatar=') ? decodeURIComponent(document.location.href.split('bot_avatar=')[1].split('&')[0]) : defaults.avatars.bot
+        username: params.get('bu') ? decodeURI(params.get('bu')) : defaults.usernames.bot,
+        avatar: params.get('ba') ? decodeURI(params.get('ba')) : defaults.avatars.bot
     },
-    commandHandler: document.location.href.includes('handler=') ? decodeURIComponent(document.location.href.split('handler=')[1].split('&')[0]) : 'commandHandler',
-    beginning_message: document.location.href.includes('msg=') ? decodeURIComponent(document.location.href.split('msg=')[1].split('&')[0]) : '',
-    lightmode: document.location.href.includes('light=') ? decodeURIComponent(document.location.href.split('light=')[1].split('&')[0]) : ''
-}
+    commandHandler: params.get('c') ? decodeURI(params.get('c')) : 'commandHandler',
+    beginning_message: params.get('m') ? decodeURI(params.get('m')) : '',
+    lightmode: params.get('l') ? true : ''
+};
 
 window.top.postMessage(data, '*');
 
