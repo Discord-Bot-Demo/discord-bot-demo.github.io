@@ -41,8 +41,7 @@ const data = {
     },
     commandHandler: document.location.href.includes('handler=') ? decodeURIComponent(document.location.href.split('handler=')[1].split('&')[0]) : 'commandHandler',
     beginning_message: document.location.href.includes('msg=') ? decodeURIComponent(document.location.href.split('msg=')[1].split('&')[0]) : '',
-    lightmode: document.location.href.includes('light=') ? decodeURIComponent(document.location.href.split('light=')[1].split('&')[0]) : '',
-    compactmode: document.location.href.includes('compact=') ? decodeURIComponent(document.location.href.split('compact=')[1].split('&')[0]) : ''
+    lightmode: document.location.href.includes('light=') ? decodeURIComponent(document.location.href.split('light=')[1].split('&')[0]) : ''
 }
 
 window.top.postMessage(data, '*');
@@ -296,9 +295,6 @@ audio._a.addEventListener('pause', () => {
 function createMessage(isBot, content, parseHTML = true) {
     const messagesDiv = document.querySelector('discord-messages');
     const message = document.createElement('discord-message');
-
-    // Messages div attributes
-    if (data.compactmode) messagesDiv.setAttribute('compact-mode', true);
 
     // Message attribubes
     message.setAttribute('author', isBot ? data.bot.username : data.user.username);
