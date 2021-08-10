@@ -5,7 +5,7 @@ function commandHandler(message) {
     <code>!say</code> - Say something as bot<br>
     <code>!radio</code> - Radio controls<br>
     <code>!leave</code> - Leave voice channel
-    <code>!deletetest</code> - Deletes your message
+    <code>!deletetest</code> - Deletes your message<br>
     <code>!bulkdelete</code> - Deletes given amount of messages`);
 
     const prefix = '!';
@@ -26,7 +26,7 @@ function commandHandler(message) {
 
     if (command === 'deletetest') deleteMessage();
     if (command === 'bulkdelete') {
-        if (!args.length) return createMessage('Enter the amount of messqage you want to delete');
+        if (!args.length) return createMessage(true, 'Enter the amount of messages you want to delete');
         bulkDeleteMessages(args[0]);
     }
     
