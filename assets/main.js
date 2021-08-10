@@ -82,7 +82,7 @@ function load() {
     }
 
     .discord-messages .discord-message:hover {
-        background-color: #ffffff;
+        background-color: #fafafa;
     }
 
     .discord-messages .discord-message .discord-message-content .discord-message-body {
