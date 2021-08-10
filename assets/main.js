@@ -1,4 +1,13 @@
 /*
+ * Custom log function
+*/
+
+log = function(type, message) {
+    message = `[Discord Bot Demo] ${message}`;
+    console[type](message);
+}
+
+/*
  * Data sending
 */
 
@@ -220,20 +229,20 @@ function load() {
     
         if (!DiscordBotDemo.botInVC) {
             member.remove();
-            voiceControls.style = 'visibility: hidden';
+            voiceControls.style = 'display: none';
             return DiscordBotDemo.userInVC = false;
         }
 
         const isSpeaking = document.querySelector('#channels .member-list .member.bot').classList.contains('speaking');
         if (!isSpeaking) {
             member.remove();
-            voiceControls.style = 'visibility: hidden';
+            voiceControls.style = 'display: none';
             return DiscordBotDemo.userInVC = false;
         }
 
         audio.stop();
         member.remove();
-        voiceControls.style = 'visibility: hidden';
+        voiceControls.style = 'display: none';
         DiscordBotDemo.userInVC = false;
     });
 }
@@ -263,7 +272,7 @@ function leaveVoiceChannel() {
 const audio = {
     _a: new Audio(),
     play: function(src) {
-        if (!DiscordBotDemo.botInVC) return console.log('Bot is not in voice channel, it must join before playing audio');
+        if (!DiscordBotDemo.botInVC) return log('warn', 'Bot is not in voice channel, it must join before playing audio');
 
         const isSpeaking = document.querySelector('#channels .member-list .member.bot').classList.contains('speaking');
         if (isSpeaking) return;
@@ -332,6 +341,7 @@ function deleteMessage() {
 }
 
 function bulkDeleteMessages(count) {
+    if (count > 100) return log('error', 'bulkDeleteMessages function can delete only 100 messages at once');
     for (let x = 0; x <= count; x++) {
         setTimeout(() => {
             const messages = document.querySelectorAll('discord-messages discord-message');
