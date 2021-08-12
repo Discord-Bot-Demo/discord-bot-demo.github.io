@@ -4,7 +4,7 @@ function commandHandler(message) {
     <code>!discord</code> - Get link to support server<br>
     <code>!say</code> - Say something as bot<br>
     <code>!radio</code> - Radio controls<br>
-    <code>!leave</code> - Leave voice channel
+    <code>!leave</code> - Leave voice channel<br>
     <code>!deletetest</code> - Deletes your message<br>
     <code>!bulkdelete</code> - Deletes given amount of messages`);
 
