@@ -83,12 +83,7 @@ body {
     background-color: var(--main-inner-channels-channel-background-color-hover);
 }
 
-#channels #text #icon {
-    width: 24px;
-    height: 24px;
-}
-
-#channels #voice #icon {
+#icon {
     width: 24px;
     height: 24px;
 }
@@ -200,6 +195,11 @@ body {
     font-weight: 500;
     color: var(--main-inner-mention-box-content-color);
     padding: 0px 8px;
+    display: flex;
+}
+
+#text-area #mention-box #content #text {
+    padding-top: 7px;
 }
 
 #text-area #mention-box #content[selected="true"] {
