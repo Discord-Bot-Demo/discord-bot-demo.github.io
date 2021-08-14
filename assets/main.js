@@ -168,11 +168,8 @@ function load() {
         }
         
         if (/[#@]$/.test(inputBox.textContent) && e.key === 'Backspace' || e.ctrlKey && e.key === 'Backspace') return mentionBox.visible(false);
-        if (/.[#@]$|[#@].$/.test(inputBox.textContent) && e.key === 'Backspace' || e.ctrlKey && e.key === 'Backspace') {
-            if (/@/.test(inputBox.textContent)) _DiscordBotDemo_mentionBox_type = 'members';
-            if (/#/.test(inputBox.textContent)) _DiscordBotDemo_mentionBox_type = 'channels';
-            return mentionBox.visible(true, _DiscordBotDemo_mentionBox_type);
-        }
+        if (/.@$|@.$/.test(inputBox.textContent) && e.key === 'Backspace' || e.ctrlKey && e.key === 'Backspace') return mentionBox.visible(true, 'members');
+        if (/.#$|#.$/.test(inputBox.textContent) && e.key === 'Backspace' || e.ctrlKey && e.key === 'Backspace') return mentionBox.visible(true, 'channels');
         
         if (/@$/.test(inputBox.textContent) && mentionBox.isVisible()) {
             if (['Control', 'Shift', 'Alt', 'Delete', 'Insert', 'ScrollLock'].includes(e.key)) return;
