@@ -17,6 +17,8 @@
     --main-inner-mention-box-content-color: black;
     --main-inner-text-box-color: #ebedef;
     --main-inner-text-box-input-color: black;
+    --context-menu-color: #f8f9f9;
+    --context-menu-item-color: black;
 }
 
 /* Dark theme */
@@ -38,6 +40,8 @@
     --main-inner-mention-box-content-color: #FFFFFF;
     --main-inner-text-box-color: #40444B;
     --main-inner-text-box-input-color: #DCDDDE;
+    --context-menu-color: #1b1a1a;
+    --context-menu-item-color: white;
 }
 
 * {
@@ -260,4 +264,23 @@ body {
 img {
     border-radius: 50%;
     height: 24px;
+}
+
+.context-menu {
+    border-radius: 5px;
+    position: fixed;
+    width: 150px;
+    background-color: var(--context-menu-color);
+}
+
+.context-menu .item {
+    padding: 8px 10px;
+    font-size: 15px;
+    color: var(--context-menu-item-color);
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+.context-menu .item:hover {
+    background-color: #4768ff;
 }

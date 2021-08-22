@@ -70,8 +70,63 @@ const DiscordBotDemo = {
 
 function load() {
     // Prevent default context menu
-    window.addEventListener('contextmenu', e => {
+      const normalizePozition = (mouseX, mouseY) => {
+        const contextMenu = document.querySelector(".context-menu");
+        const scope = document.querySelector("body");
+
+        // compute what is the mouse position relative to the container element (scope)
+        let {
+          left: scopeOffsetX,
+          top: scopeOffsetY,
+        } = scope.getBoundingClientRect();
+        
+        scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX;
+        scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY;
+       
+        const scopeX = mouseX - scopeOffsetX;
+        const scopeY = mouseY - scopeOffsetY;
+
+        // check if the element will go out of bounds
+        const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth;
+
+        const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight;
+
+        let normalizedX = mouseX;
+        let normalizedY = mouseY;
+
+        // normalize on X
+        if (outOfBoundsOnX) {
+          normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth;
+        }
+
+        // normalize on Y
+        if (outOfBoundsOnY) {
+          normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
+        }
+
+        return { normalizedX, normalizedY };
+      };
+
+      let contextMenuTemp;
+    document.addEventListener('click', e => {
+        const contextMenu = document.querySelector(".context-menu");
+        if (contextMenu.style.display === 'none') return;
+
+        contextMenu.style.display = 'none';
+        if (e.target.id === 'copy-id') navigator.clipboard.writeText(contextMenuTemp[2].id);
+    });
+    
+    document.addEventListener('contextmenu', e => {
         e.preventDefault();
+
+        const contextMenu = document.querySelector('.context-menu');
+        if (e.path[2].className !== 'discord-message hydrated') return contextMenu.style.display = 'none';
+        contextMenu.style.display = 'block';
+
+        const { normalizedX, normalizedY } = normalizePozition(e.pageX, e.pageY);
+        contextMenu.style.left = `${normalizedX}px`;
+        contextMenu.style.top = `${normalizedY}px`;
+        contextMenuTemp = e.path;
     });
 
     const body = document.querySelector('body');
@@ -360,6 +415,7 @@ function createMessage(isBot, content, parseHTML = true) {
     message.setAttribute('author', isBot ? data.bot.username : data.user.username);
     message.setAttribute('bot', isBot);
     message.setAttribute('avatar', isBot ? data.bot.avatar : data.user.avatar);
+    message.id = Date.now();
     const contentRaw = content;
     
     content = content
