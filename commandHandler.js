@@ -15,13 +15,13 @@ function commandHandler(message) {
     const args = message.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     
-    if (command === 'github') createMessage(true, 'Here is the repo link: <a href="https://github.com/discord-bot-demo/discord-bot-demo.github.io" target="_blank">https://github.com/discord-bot-demo/discord-bot-demo.github.io</a>');
-    if (command === 'docs') createMessage(true, 'Here is the docs link: <a href="https://discord-bot-demo.github.io/docs" target="_blank">https://discord-bot-demo.github.io/docs</a>');
-    if (command === 'discord') createMessage(true, '<a href="https://discord.gg/YAPsEdXEMY" target="_blank">https://discord.gg/YAPsEdXEMY</a>');
+    if (command === 'github') createMessage(true, 'Here is the repo link: https://github.com/discord-bot-demo/discord-bot-demo.github.io');
+    if (command === 'docs') createMessage(true, 'Here is the docs link: https://discord-bot-demo.github.io/docs');
+    if (command === 'discord') createMessage(true, 'https://discord.gg/YAPsEdXEMY');
 
     if (command === 'say') {
         if (!args.length) return createMessage(true, 'Enter some args');
-        createMessage(true, args.join(' '), false);
+        createMessage(true, args.join(' '));
     }
 
     if (command === 'deletetest') deleteMessage();

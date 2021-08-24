@@ -33,8 +33,17 @@ const _ = {
 }
 
 /*
- * Custom log function
+ * Custom functions
 */
+
+function checkHTML(isBot, string) {
+    const userAllowed = ['a', 'discord-mention'];
+    const botAllowed = [...userAllowed, 'discord-embed', 'embed-fields', 'embed-field'];
+    const tags = /<\/?([a-z][a-z0-9-]*)\b[^>]*>/gi;
+    return string.replace(tags, ($0, tag) => {
+      return isBot ? botAllowed.includes(tag.toLowerCase()) ? $0 : '' : userAllowed.includes(tag.toLowerCase()) ? $0 : '';
+    });
+}
 
 function log(type, message) {
     message = `[Discord Bot Demo] ${message}`;
@@ -407,7 +416,7 @@ audio._a.addEventListener('pause', () => {
     if (DiscordBotDemo.botInVC && isSpeaking) document.querySelector('#channels .member-list .member.bot.speaking').classList.remove("speaking");
 });
 
-function createMessage(isBot, content, parseHTML = true) {
+function createMessage(isBot, content) {
     const messagesDiv = document.querySelector('discord-messages');
     const message = document.createElement('discord-message');
 
@@ -416,17 +425,15 @@ function createMessage(isBot, content, parseHTML = true) {
     message.setAttribute('bot', isBot);
     message.setAttribute('avatar', isBot ? data.bot.avatar : data.user.avatar);
     message.id = Date.now();
-    const contentRaw = content;
     
     content = content
     .replace(new RegExp(`@${data.bot.username}`, 'g'), `<discord-mention>${data.bot.username}</discord-mention>`)
     .replace(new RegExp(`@${data.user.username}`, 'g'), `<discord-mention highlight>${data.user.username}</discord-mention>`)
     .replace(new RegExp(`#${_.channels.text}`, 'g'), `<discord-mention type="channel">${_.channels.text}</discord-mention>`)
     .replace(new RegExp(`#${_.channels.voice}`, 'g'), `<discord-mention type="channel">${_.channels.voice}</discord-mention>`)
+    .replace(new RegExp('https?://[^ ,"\']+', 'g'), '<a href="$&" rel="norefferer noopener" target="_blank">$&</a>')
 
-    if (!isBot) message.textContent = contentRaw;
-    if (isBot && !parseHTML) message.textContent = contentRaw;
-    if (isBot && parseHTML) message.innerHTML = content;
+    message.innerHTML = checkHTML(isBot, content);
 
     messagesDiv.append(message);
     
@@ -436,7 +443,7 @@ function createMessage(isBot, content, parseHTML = true) {
         messages.scrollTo(0, messages.scrollHeight);
     }, 50);
     
-    if (!isBot) commandHandler(contentRaw);
+    if (!isBot) commandHandler(content);
 }
 
 function deleteMessage() {
