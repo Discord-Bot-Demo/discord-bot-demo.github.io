@@ -37,7 +37,7 @@ const _ = {
 */
 
 function checkHTML(isBot, string) {
-    const userAllowed = ['a', 'discord-mention'];
+    const userAllowed = ['a', 'discord-mention', 'strong', 'code', 's', 'em', 'u'];
     const botAllowed = [...userAllowed, 'discord-embed', 'embed-fields', 'embed-field'];
     const tags = /<\/?([a-z][a-z0-9-]*)\b[^>]*>/gi;
     return string.replace(tags, ($0, tag) => {
@@ -431,7 +431,12 @@ function createMessage(isBot, content) {
     .replace(new RegExp(`@${data.user.username}`, 'g'), `<discord-mention highlight>${data.user.username}</discord-mention>`)
     .replace(new RegExp(`#${_.channels.text}`, 'g'), `<discord-mention type="channel">${_.channels.text}</discord-mention>`)
     .replace(new RegExp(`#${_.channels.voice}`, 'g'), `<discord-mention type="channel">${_.channels.voice}</discord-mention>`)
-    .replace(new RegExp('https?://[^ ,"\']+', 'g'), '<a href="$&" rel="norefferer noopener" target="_blank">$&</a>')
+    .replace(/https?:\/\/[^ ,"']+/g, '<a href="$&" rel="norefferer noopener" target="_blank">$&</a>')
+    .replace(/~~(.*)~~/g, '<s>$1</s>')
+    .replace(/`(.*)`/g, '<code>$1</code>')
+    .replace(/\*\*(.*)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*)\*/g, '<em>$1</em>')
+    .replace(/__(.*)__/g, '<u>$1</u>')
 
     message.innerHTML = checkHTML(isBot, content);
 
