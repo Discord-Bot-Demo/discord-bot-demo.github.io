@@ -38,7 +38,7 @@ const _ = {
 
 function checkHTML(isBot, string) {
     const userAllowed = ['a', 'discord-mention', 'strong', 'code', 's', 'em', 'u'];
-    const botAllowed = [...userAllowed, 'discord-embed', 'embed-fields', 'embed-field'];
+    const botAllowed = [...userAllowed, 'discord-embed', 'embed-fields', 'embed-field', 'br'];
     const tags = /<\/?([a-z][a-z0-9-]*)\b[^>]*>/gi;
     return string.replace(tags, ($0, tag) => {
       return isBot ? botAllowed.includes(tag.toLowerCase()) ? $0 : '' : userAllowed.includes(tag.toLowerCase()) ? $0 : '';
