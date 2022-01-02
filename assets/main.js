@@ -167,7 +167,7 @@ function load() {
     // Hide command handler from devtools
     const cmdElement = document.createElement('script');
 
-    cmdElement.src = `${location.ancestorOrigins[0]}/${data.commandHandler}.js`;
+    cmdElement.src = `${window.parent.location.origin}/${data.commandHandler}.js`;
     cmdElement.type = 'text/javascript';
     cmdElement.id = 'DiscordBotDemo_CommandHandler';
     
